@@ -5,12 +5,17 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lint:scss": "stylelint ./src/**/*.{vue,scss} --fix"
   },
   "dependencies": {
+    "@vue/composition-api": "^1.0.0-rc.1",
     "core-js": "^3.8.1",
+    "material-design-icons-iconfont": "^5.0.1",
+    "roboto-fontface": "*",
     "vue": "^2.6.11",
-    "vue-router": "^3.4.3"
+    "vue-router": "^3.4.3",
+    "vuetify": "^2.4.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -27,12 +32,31 @@
     "prettier": "^2.2.1",
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
-    "vue-template-compiler": "^2.6.11"
+    "stylelint": "^13.9.0",
+    "stylelint-config-recommended-scss": "^4.2.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": "^3.18.0",
+    "stylelint-webpack-plugin": "^2.1.1",
+    "vue-cli-plugin-vuetify": "~2.0.9",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.7.1"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,jsx,vue}": "vue-cli-service lint"
+    "*.js": [
+      "npm run lint",
+      "git add"
+    ],
+    "*.vue": [
+      "npm run lint",
+      "npm run lint:scss",
+      "git add"
+    ],
+    "*.scss": [
+      "npm run lint:scss",
+      "git add"
+    ]
   }
 }
